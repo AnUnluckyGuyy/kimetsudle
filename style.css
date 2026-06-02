@@ -459,9 +459,12 @@ td img {
     width: 40px;
     height: 40px;
     border-radius: 8px;
+
     object-fit: cover;
-    object-position: 50% 15%;
-    flex-shrink: 0;
+
+    /* real zoom */
+    transform: scale(1.4);
+    transform-origin: 50% 20%;
 }
 
 /* autocomplete slightly tighter */
