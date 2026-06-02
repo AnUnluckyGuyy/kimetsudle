@@ -4,16 +4,16 @@ let answer = null;
 const guessedCharacters = new Set();
 
 const ARC_ORDER = {
-"final selection": 1,
-"kidnapper's bog": 2,
-"asakusa": 3,
-"tsuzumi mansion": 4,
-"mount natagumo": 5,
-"rehabilitation training": 6,
-"mugen train": 7,
-"entertainment district": 8,
-"swordsmith village": 9,
-"infinity castle": 10
+    "final selection": 1,
+    "kidnapper's bog": 2,
+    "asakusa": 3,
+    "tsuzumi mansion": 4,
+    "mount natagumo": 5,
+    "rehabilitation training": 6,
+    "mugen train": 7,
+    "entertainment district": 8,
+    "swordsmith village": 9,
+    "infinity castle": 10
 };
 
 const input = document.getElementById("guessInput");
@@ -24,115 +24,112 @@ const winBanner = document.getElementById("winBanner");
 
 async function loadCharacters() {
 
+    try {
 
-try {
+        const response = await fetch("demonslayer.csv");
 
-    const response = await fetch("demonslayer.csv");
+        if (!response.ok) {
+            throw new Error(`Failed to load CSV (${response.status})`);
+        }
 
-    if (!response.ok) {
-        throw new Error(`Failed to load CSV (${response.status})`);
+        const csv = await response.text();
+
+        characters = parseCSV(csv);
+
+        answer =
+            characters[
+                Math.floor(Math.random() * characters.length)
+            ];
+
+        console.log("Characters loaded:", characters.length);
+        console.log("Answer:", answer);
+
+    } catch (err) {
+
+        console.error(err);
     }
-
-    const csv = await response.text();
-
-    characters = parseCSV(csv);
-
-    answer =
-        characters[
-            Math.floor(Math.random() * characters.length)
-        ];
-
-    console.log("Characters loaded:", characters.length);
-    console.log("Answer:", answer);
-
-} catch (err) {
-
-    console.error(err);
-}
-
-
 }
 
 function parseCSV(csv) {
 
+    const lines = csv
+        .trim()
+        .split(/\r?\n/);
 
-const lines = csv
-    .trim()
-    .split(/\r?\n/);
+    const headers = lines[0]
+        .split(",")
+        .map(h =>
+            h
+                .trim()
+                .replace(/^\uFEFF/, "")
+                .toLowerCase()
+        );
 
-const headers = lines[0]
-    .split(",")
-    .map(h =>
-        h
-            .trim()
-            .replace(/^\uFEFF/, "")
-            .toLowerCase()
-    );
+    return lines
+        .slice(1)
+        .map(line => {
 
-return lines
-    .slice(1)
-    .map(line => {
+            const values =
+                line
+                    .split(",")
+                    .map(v => v.trim());
 
-        const values =
-            line
-                .split(",")
-                .map(v => v.trim());
+            const obj = {};
 
-        const obj = {};
+            headers.forEach((header, index) => {
+                obj[header] = values[index] || "";
+            });
 
-        headers.forEach((header, index) => {
-            obj[header] = values[index] || "";
-        });
-
-        return obj;
-    })
-    .filter(character => character.name);
-
-
+            return obj;
+        })
+        .filter(character => character.name);
 }
+
+/* =========================
+   AUTOCOMPLETE (WITH IMAGES)
+========================= */
 
 input.addEventListener("input", () => {
 
+    const value =
+        input.value.toLowerCase().trim();
 
-const value =
-    input.value.toLowerCase().trim();
+    autocomplete.innerHTML = "";
 
-autocomplete.innerHTML = "";
+    if (!value) return;
 
-if (!value) return;
-
-const matches =
-    characters.filter(character =>
-        character.name &&
-        character.name.includes(value)
-    );
-
-matches
-    .slice(0, 5)
-    .forEach(character => {
-
-        const item =
-            document.createElement("div");
-
-        item.classList.add(
-            "autocomplete-item"
+    const matches =
+        characters.filter(character =>
+            character.name &&
+            character.name.includes(value)
         );
 
-        item.textContent =
-            titleCase(character.name);
+    matches
+        .slice(0, 6)
+        .forEach(character => {
 
-        item.addEventListener("click", () => {
+            const item =
+                document.createElement("div");
 
-            input.value =
-                character.name;
+            item.classList.add(
+                "autocomplete-item"
+            );
 
-            autocomplete.innerHTML = "";
+            item.innerHTML = `
+                <img src="${character.image}" />
+                <span>${titleCase(character.name)}</span>
+            `;
+
+            item.addEventListener("click", () => {
+
+                input.value =
+                    character.name;
+
+                autocomplete.innerHTML = "";
+            });
+
+            autocomplete.appendChild(item);
         });
-
-        autocomplete.appendChild(item);
-    });
-
-
 });
 
 button.addEventListener(
@@ -142,81 +139,76 @@ submitGuess
 
 input.addEventListener("keydown", e => {
 
+    if (e.key !== "Enter") return;
 
-if (e.key !== "Enter") return;
+    e.preventDefault();
 
-e.preventDefault();
+    const firstSuggestion =
+        autocomplete.querySelector(
+            ".autocomplete-item"
+        );
 
-const firstSuggestion =
-    autocomplete.querySelector(
-        ".autocomplete-item"
-    );
+    if (firstSuggestion) {
 
-if (firstSuggestion) {
+        input.value =
+            firstSuggestion.textContent
+                .toLowerCase();
+    }
 
-    input.value =
-        firstSuggestion.textContent
-            .toLowerCase();
-}
-
-submitGuess();
-
-
+    submitGuess();
 });
 
 function submitGuess() {
 
+    const name =
+        input.value
+            .toLowerCase()
+            .trim();
 
-const name =
-    input.value
-        .toLowerCase()
-        .trim();
-
-const guess =
-    characters.find(
-        c =>
-            c.name &&
-            c.name.toLowerCase() === name
-    );
-
-if (!guess) {
-    return;
-}
-
-if (
-    guessedCharacters.has(
-        guess.name
-    )
-) {
-    return;
-}
-
-guessedCharacters.add(
-    guess.name
-);
-
-addGuessRow(
-    guess,
-    answer
-);
-
-autocomplete.innerHTML = "";
-input.value = "";
-
-if (
-    guess.name === answer.name
-) {
-
-    if (winBanner) {
-        winBanner.classList.add(
-            "show"
+    const guess =
+        characters.find(
+            c =>
+                c.name &&
+                c.name.toLowerCase() === name
         );
+
+    if (!guess) {
+        return;
     }
 
-    input.disabled = true;
-    button.disabled = true;
-}
+    if (
+        guessedCharacters.has(
+            guess.name
+        )
+    ) {
+        return;
+    }
 
+    guessedCharacters.add(
+        guess.name
+    );
+
+    addGuessRow(
+        guess,
+        answer
+    );
+
+    autocomplete.innerHTML = "";
+    input.value = "";
+
+    if (
+        guess.name === answer.name
+    ) {
+
+        if (winBanner) {
+            winBanner.classList.add(
+                "show"
+            );
+        }
+
+        input.disabled = true;
+        button.disabled = true;
+    }
 }
 
 function compareExact(
@@ -227,7 +219,6 @@ answer
 return guess === answer
     ? "correct"
     : "wrong";
-
 
 }
 
@@ -285,14 +276,12 @@ return g < a
     ? `${guess} ⬆️`
     : `${guess} ⬇️`;
 
-
 }
 
 function compareArcClass(
 guessArc,
 answerArc
 ) {
-
 
 const g =
     ARC_ORDER[
@@ -351,6 +340,7 @@ const row =
 
 row.innerHTML = `
     <td class="${compareExact(guess.name, answer.name)}">
+        <img src="${guess.image}" style="width:40px;height:40px;border-radius:8px;vertical-align:middle;margin-right:8px;">
         ${titleCase(guess.name)}
     </td>
 

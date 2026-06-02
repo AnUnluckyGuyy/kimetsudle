@@ -1,23 +1,23 @@
-name,gender,race,age,hair color,height,combat style,affiliation,first arc
-tanjiro kamado,male,human,16,black,165,sun breathing,demon slayer corps,final selection
-nezuko kamado,female,demon,14,black,153,blood demon art,demon slayer corps,final selection
-zenitsu agatsuma,male,human,16,blonde,164,thunder breathing,demon slayer corps,final selection
-inosuke hashibira,male,human,15,black,164,beast breathing,demon slayer corps,tsuzumi mansion
-muzan kibutsuji,male,demon,1000+,black,179,blood demon art,demon progenitor,kidnapper's bog
-shinobu kocho,female,human,18,black,151,insect breathing,hashira,mount natagumo
-giyu tomioka,male,human,21,black,176,water breathing,hashira,final selection
-mitsuri kanroji,female,human,19,pink,167,love breathing,hashira,mount natagumo
-sanemi shinazugawa,male,human,21,white,179,wind breathing,hashira,rehabilitation training
-obanai iguro,male,human,21,black,162,serpent breathing,hashira,rehabilitation training
-kyojuro rengoku,male,human,20,blonde,177,flame breathing,hashira,mount natagumo
-gyomei himejima,male,human,27,black,220,stone breathing,hashira,mount natagumo
-tengen uzui,male,human,23,white,198,sound breathing,hashira,mount natagumo
-muichiro tokito,male,human,14,black,160,mist breathing,hashira,mount natagumo
-kokushibo,male,demon,400+,black,190,moon breathing,upper rank moon,swordsmith village
-doma,male,demon,100+,white,187,blood demon art,upper rank moon,swordsmith village
-akaza,male,demon,100+,pink,173,blood demon art,upper rank moon,mugen train
-nakime,female,demon,100+,black,unknown,blood demon art,upper rank moon,rehabilitation training
-hantengu,male,demon,200+,black,166,blood demon art,upper rank moon,swordsmith village
-gyokko,male,demon,100+,purple,150,blood demon art,upper rank moon,swordsmith village
-kaigaku,male,demon,20,black,167,thunder breathing,upper rank moon,infinity castle
-enmu,male,demon,25,black,168,blood demon art,lower rank moon,mugen train
+name,gender,race,age,hair color,height,combat style,affiliation,first arc,image
+tanjiro kamado,male,human,16,black,165,sun breathing,demon slayer corps,final selection,images/tanjiro.png
+nezuko kamado,female,demon,14,black,153,blood demon art,demon slayer corps,final selection,images/nezuko.png
+zenitsu agatsuma,male,human,16,blonde,164,thunder breathing,demon slayer corps,final selection,images/zenitsu.png
+inosuke hashibira,male,human,15,black,164,beast breathing,demon slayer corps,tsuzumi mansion,images/inosuke.png
+muzan kibutsuji,male,demon,1000+,black,179,blood demon art,demon progenitor,kidnapper's bog,images/muzan.png
+shinobu kocho,female,human,18,black,151,insect breathing,hashira,mount natagumo,images/shinobu.png
+giyu tomioka,male,human,21,black,176,water breathing,hashira,final selection,images/giyu.png
+mitsuri kanroji,female,human,19,pink,167,love breathing,hashira,mount natagumo,images/mitsuri.png
+sanemi shinazugawa,male,human,21,white,179,wind breathing,hashira,rehabilitation training,images/sanemi.png
+obanai iguro,male,human,21,black,162,serpent breathing,hashira,rehabilitation training,images/obanai.png
+kyojuro rengoku,male,human,20,blonde,177,flame breathing,hashira,mount natagumo,images/rengoku.png
+gyomei himejima,male,human,27,black,220,stone breathing,hashira,mount natagumo,images/himejima.png
+tengen uzui,male,human,23,white,198,sound breathing,hashira,mount natagumo,images/uzui.png
+muichiro tokito,male,human,14,black,160,mist breathing,hashira,mount natagumo,images/muichiro.png
+kokushibo,male,demon,400+,black,190,moon breathing,upper rank moon,swordsmith village,images/kokushibo.png
+doma,male,demon,100+,white,187,blood demon art,upper rank moon,swordsmith village,images/doma.png
+akaza,male,demon,100+,pink,173,blood demon art,upper rank moon,mugen train,images/akaza.png
+nakime,female,demon,100+,black,unknown,blood demon art,upper rank moon,rehabilitation training,images/nakime.png
+hantengu,male,demon,200+,black,166,blood demon art,upper rank moon,swordsmith village,images/hantengu.png
+gyokko,male,demon,100+,purple,150,blood demon art,upper rank moon,swordsmith village,images/gyokko.png
+kaigaku,male,demon,20,black,167,thunder breathing,upper rank moon,infinity castle,images/kaigaku.png
+enmu,male,demon,25,black,168,blood demon art,lower rank moon,mugen train,images/enmu.png
