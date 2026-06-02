@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DemonSlayerdle</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="ink ink-1"></div>
+    <div class="ink ink-2"></div>
+    <div class="ink ink-3"></div>
+
+    <main class="container">
+
+        <header class="hero">
+
+            <span class="series-tag">
+                鬼滅の刃
+            </span>
+
+            <h1>
+                DemonSlayerdle
+            </h1>
+
+            <div class="katana-line"></div>
+
+            <p>
+                Guess today's Demon Slayer character.
+            </p>
+
+        </header>
+
+        <section class="stats">
+
+            <div class="stat-card">
+                <span>Streak</span>
+                <strong id="streak">0</strong>
+            </div>
+
+            <div class="stat-card">
+                <span>Best</span>
+                <strong id="best">0</strong>
+            </div>
+
+            <div class="stat-card">
+                <span>Played</span>
+                <strong id="played">0</strong>
+            </div>
+
+        </section>
+
+        <section class="guess-section">
+
+            <div class="search-wrapper">
+
+                <input
+                    id="guessInput"
+                    type="text"
+                    placeholder="Search a character..."
+                    class="guess-input"
+                    autocomplete="off"
+                >
+
+                <div id="autocomplete"></div>
+
+            </div>
+
+            <button
+                id="guessBtn"
+                class="guess-btn"
+            >
+                GUESS
+            </button>
+
+        </section>
+
+        <div id="winBanner" class="win-banner">
+        🎉 You guessed correctly! 🎉
+        </div>
+        <section class="results">
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Gender</th>
+                            <th>Race</th>
+                            <th>Age</th>
+                            <th>Hair</th>
+                            <th>Height</th>
+                            <th>Combat Style</th>
+                            <th>Affiliation</th>
+                            <th>First Arc</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="resultsBody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

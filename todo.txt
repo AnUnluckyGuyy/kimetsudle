@@ -1,0 +1,3 @@
+categories:
+
+name, gender, race, age, hair color, height, combat style, affiliation, first arc
